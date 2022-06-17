@@ -72,9 +72,6 @@ const Home = () => {
   const [addView, setAddView] = useState(false); //addSection, addTask, addTopic
   //Bind state
   const { tasks } = useSelector((state) => state.taskReducer);
-  //Bind actions
-  const dispatch = useDispatch();
-  const getTasks = () => dispatch(loadTasks());
 
   const displayAddView = () => {
     switch (addView) {
