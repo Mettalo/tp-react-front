@@ -4,8 +4,9 @@ import {
   LOAD_TASKS_END,
   CREATE_TASK_START,
   CREATE_TASK_END,
-  DELETE_TASKS_START
+  DELETE_TASKS_START,
 } from "../state/taskReducer";
+import API_ROOT from "../config";
 
 export function loadTasks() {
   return (dispatch) => {
@@ -15,7 +16,7 @@ export function loadTasks() {
       method: "GET",
     };
 
-    fetch("http://localhost:3000/task", requestOptions)
+    fetch(`${API_ROOT}/task`, requestOptions)
       .then(handleResponse)
       .then((response) => {
         dispatch({
@@ -42,7 +43,7 @@ export function createTask(title, description, priority, topicId) {
         topicId,
       }),
     };
-    fetch("http://localhost:3000/task", requestOptions)
+    fetch(`${API_ROOT}/task`, requestOptions)
       .then(handleResponse)
       .then((response) => {
         dispatch({
@@ -66,10 +67,9 @@ export function deleteTasks(tasksToDelete) {
       }),
     };
 
-    fetch("http://localhost:3000/task", requestOptions)
+    fetch(`${API_ROOT}/task`, requestOptions)
       .then(handleResponse)
       .then((response) => {
-        console.log(response);
         dispatch({
           type: LOAD_TASKS_END,
           data: response,

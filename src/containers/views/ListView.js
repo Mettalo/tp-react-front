@@ -99,6 +99,8 @@ const ListView = () => {
         }
       });
       setTree(newTree);
+    } else {
+      setTree([]);
     }
   }, [topics, tasks]);
 
