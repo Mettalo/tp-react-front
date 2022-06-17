@@ -79,6 +79,16 @@ const Validate = styled.div`
   color: ${color.backgroundColor};
 `;
 
+const IsCreateSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+  border: solid 1px ${color.primaryColor};
+  background-color: ${color.primaryColor};
+  color: black;
+`;
+
 const customStyles = {
   control: (base, state) => ({
     ...base,
@@ -111,6 +121,7 @@ const AddTask = ({ setAddView }) => {
   const [topicSelected, setTopicSelected] = useState("");
   //Bind state
   const { topics } = useSelector((state) => state.topicReducer);
+  const { lastTaskNameCreated } = useSelector((state) => state.taskReducer);
   //Bind actions
   const dispatch = useDispatch();
   const get = () => dispatch(loadTopics());
@@ -180,6 +191,11 @@ const AddTask = ({ setAddView }) => {
         <ValidateSection>
           <Validate onClick={() => create()}>Créer la tâche</Validate>
         </ValidateSection>
+        {lastTaskNameCreated && (
+          <IsCreateSection>
+            La tâche {lastTaskNameCreated} a bien été crée
+          </IsCreateSection>
+        )}
       </Content>
     </Container>
   );

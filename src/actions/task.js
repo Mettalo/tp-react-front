@@ -46,8 +46,10 @@ export function createTask(title, description, priority, topicId) {
     fetch(`${API_ROOT}/task`, requestOptions)
       .then(handleResponse)
       .then((response) => {
+        console.log(response)
         dispatch({
           type: CREATE_TASK_END,
+          data: {title: response.title}
         });
       });
   };

@@ -1,6 +1,7 @@
 const initialState = {
   tasks: [],
   fetchingTask: false,
+  lastTaskNameCreated : ""
 };
 
 const taskReducer = (state = initialState, action = {}) => {
@@ -19,6 +20,7 @@ const taskReducer = (state = initialState, action = {}) => {
       return newState;
     case CREATE_TASK_END:
       newState.fetchingTask = false;
+      newState.lastTaskNameCreated = action.data.title
       return newState;
 
     default:
